@@ -99,7 +99,7 @@ class ChessClockApp {
         this.loadSettings();
         this.bindEvents();
         this.updateDisplay();
-        this.registerServiceWorker();
+        this.registerServiceWorker(); // Service worker registration path updated here
     }
     loadSettings() {
         const initialTime = Settings.getInitialTimeMinutes();
@@ -299,7 +299,7 @@ class ChessClockApp {
     registerServiceWorker() {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('/chess_clock/service-worker.js') // MODIFIED LINE
                     .then(registration => {
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 })
@@ -310,7 +310,8 @@ class ChessClockApp {
         }
     }
 }
+
 new ChessClockApp();
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=app.js.map 
 // The above sourceMappingURL is optional but good practice if actual .map files were generated.
 // For this simulation, it's just a comment.

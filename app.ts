@@ -259,7 +259,7 @@ class ChessClockApp {
     private registerServiceWorker(): void {
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('/chess_clock/service-worker.js') // Updated path
                     .then(registration => {
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
                     })
