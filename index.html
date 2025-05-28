@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Chess Clock</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        body { margin: 0; font-family: sans-serif; background-color: #f0f0f0; -webkit-tap-highlight-color: transparent; }
+        .timer { transition: background-color 0.3s ease; }
+        .modal { display: none; /* Hidden by default */ }
+        .modal.flex { display: flex; } /* To show the modal */
+        /* Ensure buttons are consistently sized and text doesn't wrap unexpectedly on small screens */
+        #controls button { min-width: 70px; text-align: center;}
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+
+    <!-- Timer Container -->
+    <div class="flex-grow flex flex-col sm:flex-row">
+        <!-- Player 1 Timer -->
+        <div id="player1Display" class="timer flex-grow w-full sm:w-1/2 h-1/2 sm:h-full flex flex-col justify-center items-center text-5xl sm:text-6xl md:text-7xl font-bold bg-gray-200 cursor-pointer">
+            <span id="player1Time">10:00</span>
+        </div>
+
+        <!-- Player 2 Timer -->
+        <div id="player2Display" class="timer flex-grow w-full sm:w-1/2 h-1/2 sm:h-full flex flex-col justify-center items-center text-5xl sm:text-6xl md:text-7xl font-bold bg-gray-300 cursor-pointer">
+            <span id="player2Time">10:00</span>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div id="controls" class="w-full bg-gray-800 text-white p-2 flex justify-around items-center fixed bottom-0 z-10">
+        <button id="startButton" aria-label="Start Timer" class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 sm:px-6 rounded text-base sm:text-lg">Start</button>
+        <button id="pauseButton" aria-label="Pause Timer" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-3 px-4 sm:px-6 rounded text-base sm:text-lg">Pause</button>
+        <button id="resetButton" aria-label="Reset Timer" class="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 sm:px-6 rounded text-base sm:text-lg">Reset</button>
+        <button id="settingsButton" aria-label="Open Settings" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 sm:px-6 rounded text-base sm:text-lg">Settings</button>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal fixed inset-0 bg-gray-900 bg-opacity-75 flex justify-center items-center p-4 z-20">
+        <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-xs sm:max-w-sm md:max-w-md">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Settings</h2>
+            <div class="mb-4">
+                <label for="initialTimeInput" class="block text-gray-700 text-sm font-bold mb-2">Initial Time (minutes):</label>
+                <input type="number" id="initialTimeInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="10" min="1">
+            </div>
+            <div class="mb-6">
+                <label for="incrementInput" class="block text-gray-700 text-sm font-bold mb-2">Increment (seconds):</label>
+                <input type="number" id="incrementInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="0" min="0">
+            </div>
+            <div class="flex items-center justify-between">
+                <button id="saveSettingsButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Save
+                </button>
+                <button id="closeSettingsButton" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dist/app.js"></script>
+</body>
+</html>
